@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex Debug (J-Link)",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/Debug/stm32f103_right_setup.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",  // Ожидание, пока не будет выполнена точка входа main
+            "servertype": "jlink",
+            "serverpath": "/usr/bin/JLinkGDBServerCLExe",  // Путь к JLink GDB Server
+            "serverArgs": [
+                "-device", "STM32F103C8",       // Модель устройства
+                "-if", "swd",                    // Интерфейс SWD
+                "-speed", "4000",                // Скорость интерфейса
+                "-autoconnect", "1"              // Автоматическое подключение
+            ],
+            "device": "STM32F103C8",            // Указание устройства
+            "interface": "swd",                 // Использование SWD
+            "svdFile": "${workspaceFolder}/STM32F103.svd", // Файл описания регистров (SVD) для STM32F103
+            "gdbPath": "/usr/bin/arm-none-eabi-gdb",  // Путь к GDB
+            "serverLaunchTimeout": 5000,         // Таймаут для запуска J-Link GDB Server
+            "showDevDebugOutput": true,         // Показывать вывод отладки
+            "postLaunchCommands": [
+                "monitor reset halt",           // Сброс устройства и остановка
+                "load"                           // Загрузка программы
+            ]
+        }
+    ]
+}

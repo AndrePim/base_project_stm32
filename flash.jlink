@@ -1,0 +1,5 @@
+r
+loadbin build/Debug/stm32f103_right_setup.bin, 0x08000000
+r
+g
+q

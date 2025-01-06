@@ -1,0 +1,64 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Configure and Build",
+            "type": "shell",
+            "command": "/usr/bin/cmake",
+            "args": [
+                "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/gcc-arm-none-eabi.cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build/Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "/usr/bin/cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build/Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "Configure and Build"
+        },
+        {
+            "label": "Flash",
+            "type": "shell",
+            "command": "/opt/SEGGER/JLink/JLinkExe",
+            "args": [
+                "-device",
+                "STM32F103C8",
+                "-if",
+                "SWD",
+                "-speed",
+                "4000",
+                "-CommanderScript",
+                "${workspaceFolder}/flash.jlink"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "dependsOn": "Build"
+        }
+    ]
+}
