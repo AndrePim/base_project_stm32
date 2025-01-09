@@ -16,7 +16,9 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": ["$gcc"],
+            "problemMatcher": [
+                "$gcc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -33,7 +35,9 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": ["$gcc"],
+            "problemMatcher": [
+                "$gcc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": false
@@ -59,6 +63,20 @@
             },
             "problemMatcher": [],
             "dependsOn": "Build"
+        },
+        {
+            "label": "Clean Build Folder",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "${workspaceFolder}/build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
         }
+        
     ]
 }

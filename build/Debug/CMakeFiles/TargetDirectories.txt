@@ -1,5 +1,0 @@
-/home/andre/STM32_project/project/stm32F103_right_setup/stm32f103_right_setup/build/Debug/CMakeFiles/stm32f103_right_setup.dir
-/home/andre/STM32_project/project/stm32F103_right_setup/stm32f103_right_setup/build/Debug/CMakeFiles/edit_cache.dir
-/home/andre/STM32_project/project/stm32F103_right_setup/stm32f103_right_setup/build/Debug/CMakeFiles/rebuild_cache.dir
-/home/andre/STM32_project/project/stm32F103_right_setup/stm32f103_right_setup/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
-/home/andre/STM32_project/project/stm32F103_right_setup/stm32f103_right_setup/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir

@@ -14,8 +14,8 @@ target_compile_definitions(stm32cubemx INTERFACE
 
 target_include_directories(stm32cubemx INTERFACE
     ../../Core/Inc
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
     /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc
+    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
     /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Device/ST/STM32F1xx/Include
     /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include
 )
@@ -23,9 +23,11 @@ target_include_directories(stm32cubemx INTERFACE
 target_sources(stm32cubemx INTERFACE
     ../../Core/Src/main.c
     ../../Core/Src/gpio.c
+    ../../Core/Src/usart.c
     ../../Core/Src/stm32f1xx_it.c
     ../../Core/Src/stm32f1xx_hal_msp.c
     /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
+    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
     /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
     /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
     /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
