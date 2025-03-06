@@ -20,10 +20,10 @@
 #include "main.h"
 #include "usart.h"
 #include "gpio.h"
-#include <string.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <string.h>
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,20 +44,22 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+uint8_t rx_buffer[1];  // Буфер для получения данных
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+int _write(int file, char *data, int len);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void send_uart(const char *data) {
-    HAL_UART_Transmit(&huart1, (uint8_t*)data, strlen(data), HAL_MAX_DELAY);
-}
+// void send_uart(const char *data) {
+//     HAL_UART_Transmit(&huart1, (uint8_t*)data, strlen(data), HAL_MAX_DELAY);
+// }
 
 
 /* USER CODE END 0 */
@@ -93,7 +95,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+    // HAL_UART_Receive_IT(&huart1, rx_buffer, 1); // Включаем прерывание на прием
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,11 +106,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-     send_uart("Hello from STM32!\r\n");
-        HAL_Delay(1000);
-     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // Переключение состояния пина
-        HAL_Delay(1000);         
+    // printf("PC13: %s\r\n", HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET ? "HIGH" : "LOW");
+    printf("PC13: %d\r\n", HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13));
+    // send_uart("Hello from STM32!\r\n");
+    // HAL_Delay(1000);
+    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // Переключение состояния пина
+    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -152,6 +156,11 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+int _write(int file, char *data, int len)
+{
+    HAL_UART_Transmit(&huart1, (uint8_t*)data, len, HAL_MAX_DELAY);
+    return len;
+}
 
 /* USER CODE END 4 */
 

@@ -72,9 +72,28 @@ set(ELF_FILE ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.elf)
 set(BIN_FILE ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.bin)
 set(HEX_FILE ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.hex)
 
-# Добавляем команды для генерации .bin и .hex
+# Добавление команды для генерации .bin и .hex
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -O binary ${ELF_FILE} ${BIN_FILE}
     COMMAND ${CMAKE_OBJCOPY} -O ihex ${ELF_FILE} ${HEX_FILE}
     COMMENT "Generating binary and hex files"
+)
+
+# Определение пути для flash.jlink в корневой папке
+set(JLINK_FILE ${CMAKE_SOURCE_DIR}/flash.jlink)
+
+# Создание содержимого файла flash.jlink
+file(WRITE ${JLINK_FILE}
+"r\n\
+loadbin ${BIN_FILE}, 0x08000000\n\
+r\n\
+g\n\
+q\n"
+)
+
+# Добавление команды для генерации flash.jlink
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Generated ${JLINK_FILE}"
+    DEPENDS ${BIN_FILE}
+    COMMENT "Generating J-Link script file: flash.jlink"
 )

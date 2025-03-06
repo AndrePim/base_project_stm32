@@ -1,5 +1,5 @@
 r
-loadbin build/Debug/stm32f103_right_setup.bin, 0x08000000
+loadbin /home/andre/STM32_project/project/stm32F103_right_setup/stm32f103_right_setup/build/Debug/stm32f103_right_setup.bin, 0x08000000
 r
 g
 q
