@@ -1,0 +1,6 @@
+# Игнорируем файлы CMake
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+Makefile
+build/
