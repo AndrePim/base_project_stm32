@@ -1,58 +1,87 @@
 cmake_minimum_required(VERSION 3.22)
-
-project(stm32cubemx)
-add_library(stm32cubemx INTERFACE)
-
 # Enable CMake support for ASM and C languages
 enable_language(C ASM)
-
-target_compile_definitions(stm32cubemx INTERFACE 
+# STM32CubeMX generated symbols (macros)
+set(MX_Defines_Syms 
 	USE_HAL_DRIVER 
 	STM32F103xB
     $<$<CONFIG:Debug>:DEBUG>
 )
 
-target_include_directories(stm32cubemx INTERFACE
-    ../../Core/Inc
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Device/ST/STM32F1xx/Include
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include
+# STM32CubeMX generated include paths
+set(MX_Include_Dirs
+    ${CMAKE_SOURCE_DIR}/Core/Inc
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/CMSIS/Include
+
 )
 
-target_sources(stm32cubemx INTERFACE
-    ../../Core/Src/main.c
-    ../../Core/Src/gpio.c
-    ../../Core/Src/usart.c
-    ../../Core/Src/stm32f1xx_it.c
-    ../../Core/Src/stm32f1xx_hal_msp.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
-    /home/andre/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
-    ../../Core/Src/system_stm32f1xx.c
-    ../../Core/Src/sysmem.c
-    ../../Core/Src/syscalls.c
-    ../../startup_stm32f103xb.s
+# STM32CubeMX generated application sources
+set(MX_Application_Src
+    ${CMAKE_SOURCE_DIR}/Core/Src/main.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/gpio.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f1xx_it.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f1xx_hal_msp.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
+    ${CMAKE_SOURCE_DIR}/startup_stm32f103xb.s
 )
 
-target_link_directories(stm32cubemx INTERFACE
+# STM32 HAL/LL Drivers
+set(STM32_Drivers_Src
+    ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f1xx.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
+    C:/Compilers/STM32_components/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
 )
 
-target_link_libraries(stm32cubemx INTERFACE
+# Drivers Midllewares
+
+
+
+# Link directories setup
+set(MX_LINK_DIRS
+
 )
+# Project static libraries
+set(MX_LINK_LIBS 
+    STM32_Drivers
+    
+)
+# Interface library for includes and symbols
+add_library(stm32cubemx INTERFACE)
+target_include_directories(stm32cubemx INTERFACE ${MX_Include_Dirs})
+target_compile_definitions(stm32cubemx INTERFACE ${MX_Defines_Syms})
+
+# Create STM32_Drivers static library
+add_library(STM32_Drivers OBJECT)
+target_sources(STM32_Drivers PRIVATE ${STM32_Drivers_Src})
+target_link_libraries(STM32_Drivers PUBLIC stm32cubemx)
+
+
+# Add STM32CubeMX generated application sources to the project
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${MX_Application_Src})
+
+# Link directories setup
+target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE ${MX_LINK_DIRS})
+
+# Add libraries to the project
+target_link_libraries(${CMAKE_PROJECT_NAME} ${MX_LINK_LIBS})
+
+# Add the map file to the list of files to be removed with 'clean' target
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES ADDITIONAL_CLEAN_FILES ${CMAKE_PROJECT_NAME}.map)
 
 # Validate that STM32CubeMX code is compatible with C standard
-if(CMAKE_C_STANDARD LESS 11)
+if((CMAKE_C_STANDARD EQUAL 90) OR (CMAKE_C_STANDARD EQUAL 99))
     message(ERROR "Generated code requires C11 or higher")
 endif()
-
-

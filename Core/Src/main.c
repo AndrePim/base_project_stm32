@@ -18,9 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "usart.h"
 #include "gpio.h"
-#include <string.h>
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -55,10 +54,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void send_uart(const char *data) {
-    HAL_UART_Transmit(&huart1, (uint8_t*)data, strlen(data), HAL_MAX_DELAY);
-}
-
 
 /* USER CODE END 0 */
 
@@ -91,7 +86,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -101,13 +95,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    HAL_Delay(100);
+    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // Переключение состояния пина
     /* USER CODE BEGIN 3 */
-
-     send_uart("Hello from STM32!\r\n");
-        HAL_Delay(1000);
-     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // Переключение состояния пина
-        HAL_Delay(1000);         
   }
   /* USER CODE END 3 */
 }
